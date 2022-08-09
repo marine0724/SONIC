@@ -208,7 +208,8 @@ public class Player : MonoBehaviour
     }
 
     private void Move() //Player 움직이기
-    {           
+    {     
+        
         hAxis = Input.GetAxis("Horizontal");
         vAxis = Input.GetAxis("Vertical");
 
@@ -234,36 +235,35 @@ public class Player : MonoBehaviour
         // 방향 설정
         dir = new Vector3(hAxis, 0, vAxis).normalized;
 
-        // 카메라가 보는 방향을 앞방향으로 하는 코드
-        {
-            // 카메라의 y 회전만 구해온다.
-            Quaternion v3Rotation = Quaternion.Euler(0f, CamRotate.Instance.gameObject.transform.eulerAngles.y, 0f);
+         
+        # region    카메라가 보는 방향을 앞방향으로 하는 코드
+        // 카메라의 y 회전만 구해온다.
+        Quaternion v3Rotation = Quaternion.Euler(0f, CamRotate.Instance.gameObject.transform.eulerAngles.y, 0f);
 
             //이동할 벡터를 돌린다.
             dir = v3Rotation * dir;
-        }
+        #endregion
 
-        // 방향키를 눌렀을 때, 그 방향을 바라보게 하는 코드
-        {
-             // 움직일 때
-            if (!(hAxis == 0 && vAxis == 0))
+        
+        #region 방향키를 눌렀을 때, 그 방향을 바라보게 하는 코드
+        // 움직일 때
+        if (!(hAxis == 0 && vAxis == 0))
             {
                 // 지금 보고 있는 값 부터 움직이는 방향으로 바라보는 방향 값 까지 Lerp 로 회전
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 20.0f);
             }
 
-        }
+        #endregion
+
 
 
         //------------------------------------------------------------------------------------------------ 여기 뜯어서 다시 봐야함
 
-        //가속 최댓값 최솟값 설정
-        {
-            // 앞방향키를 계속 누르고 있을때
-            if (vAxis > 0)
+        
+        #region 가속 최댓값 최솟값 설정
+        // 앞방향키를 계속 누르고 있을때
+        if (vAxis > 0)
             {
-                // 그냥 앞방향키 누르고만 있으면 40만큼만 가속됨
-
                 // 만약 avgAccel 보다 작은데
                 if (accel < avgAccel)
                 {
@@ -276,14 +276,11 @@ public class Player : MonoBehaviour
                     // 그게 아니라면 제로백만큼 가속 됨
                     accel += (100 / zeroTohundred) * Time.deltaTime;
                 }
-
-
                 // 가속값이 일반 가속값보다 크다면 초당 10만큼 감속
                 else if (accel > avgAccel)
                 {
                     accel -= 10f * Time.deltaTime;
                 }
-
                 // 가속값 최대로 만들기
                 //만약 가속값이 최대가속값 이상이라면
                 else if (accel >= maxAccel)
@@ -291,7 +288,6 @@ public class Player : MonoBehaviour
                     // 가속은 최대가속값 고정
                     accel = maxAccel;
                 }
-
             }
 
 
@@ -397,7 +393,7 @@ public class Player : MonoBehaviour
                     accel = minAccel;
                 }
             }
-        }
+        #endregion
         //------------------------------------------------------------------------------------------------
 
 
