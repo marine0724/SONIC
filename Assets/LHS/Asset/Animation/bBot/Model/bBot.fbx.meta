@@ -1,0 +1,229 @@
+fileFormatVersion: 2
+guid: 6b0054a01d0cfff4497f8bf5f556af9b
+timeCreated: 1480261365
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm.L
+    100002: Arm.R
+    100004: ArmSwing.L
+    100006: ArmSwing.R
+    100008: //RootNode
+    100010: bBot
+    100012: BellyBlaster
+    100014: BellyBlaster.L
+    100016: BellyBlaster.R
+    100018: BellyOrb
+    100020: Bicep.L
+    100022: Bicep.R
+    100024: BicepRotate.L
+    100026: BicepRotate.R
+    100028: Bone.002
+    100030: ChestOrb
+    100032: Door.L
+    100034: Door.L 1
+    100036: Door.R
+    100038: Door.R 1
+    100040: Eye.L
+    100042: Eye.R
+    100044: Eyes
+    100046: Foot.L
+    100048: Foot.R
+    100050: Fuel
+    100052: Head
+    100054: Hips
+    100056: IKLeg.L
+    100058: IKLeg.R
+    100060: KneePole.L
+    100062: KneePole.R
+    100064: Laser
+    100066: Leg.L
+    100068: Leg.R
+    100070: Missile1
+    100072: Missile2
+    100074: Missile3
+    100076: Missile4
+    100078: MissileHolder.L
+    100080: MissileHolder.R
+    100082: OrbEffect
+    100084: Root
+    100086: Shoulder.L
+    100088: Shoulder.L.003
+    100090: Shoulder.R
+    100092: Shoulder.R.003
+    100094: ShoulderControl.L
+    100096: ShoulderControl.R
+    100098: Skeleton
+    100100: Thigh.L
+    100102: Thigh.R
+    100104: Toes.L
+    100106: Toes.R
+    100108: Torso
+    100110: TurrotBase.L
+    100112: TurrotBase.R
+    100114: TurrotGun.L
+    100116: TurrotGun.R
+    400000: Arm.L
+    400002: Arm.R
+    400004: ArmSwing.L
+    400006: ArmSwing.R
+    400008: bBot
+    400010: //RootNode
+    400012: BellyBlaster
+    400014: BellyBlaster.L
+    400016: BellyBlaster.R
+    400018: BellyOrb
+    400020: Bicep.L
+    400022: Bicep.R
+    400024: BicepRotate.L
+    400026: BicepRotate.R
+    400028: Bone.002
+    400030: ChestOrb
+    400032: Door.L
+    400034: Door.L 1
+    400036: Door.R
+    400038: Door.R 1
+    400040: Eye.L
+    400042: Eye.R
+    400044: Eyes
+    400046: Foot.L
+    400048: Foot.R
+    400050: Fuel
+    400052: Head
+    400054: Hips
+    400056: IKLeg.L
+    400058: IKLeg.R
+    400060: KneePole.L
+    400062: KneePole.R
+    400064: Laser
+    400066: Leg.L
+    400068: Leg.R
+    400070: Missile1
+    400072: Missile2
+    400074: Missile3
+    400076: Missile4
+    400078: MissileHolder.L
+    400080: MissileHolder.R
+    400082: OrbEffect
+    400084: Root
+    400086: Shoulder.L
+    400088: Shoulder.L.003
+    400090: Shoulder.R
+    400092: Shoulder.R.003
+    400094: ShoulderControl.L
+    400096: ShoulderControl.R
+    400098: Skeleton
+    400100: Thigh.L
+    400102: Thigh.R
+    400104: Toes.L
+    400106: Toes.R
+    400108: Torso
+    400110: TurrotBase.L
+    400112: TurrotBase.R
+    400114: TurrotGun.L
+    400116: TurrotGun.R
+    2300000: Door.L 1
+    2300002: Door.R 1
+    2300004: Fuel
+    2300006: Missile1
+    2300008: Missile2
+    2300010: Missile3
+    2300012: Missile4
+    2300014: MissileHolder.L
+    2300016: MissileHolder.R
+    3300000: Door.L 1
+    3300002: Door.R 1
+    3300004: Fuel
+    3300006: Missile1
+    3300008: Missile2
+    3300010: Missile3
+    3300012: Missile4
+    3300014: MissileHolder.L
+    3300016: MissileHolder.R
+    4300000: Fuel
+    4300002: Missile2
+    4300004: Missile1
+    4300006: MissileHolder.L
+    4300008: Missile3
+    4300010: Missile4
+    4300012: MissileHolder.R
+    4300014: Door.L
+    4300016: Door.R
+    4300018: OrbEffect
+    4300020: BellyOrb
+    4300022: bBot
+    4300024: ChestOrb
+    4300026: Laser
+    4300028: Eyes
+    9500000: //RootNode
+    13700000: bBot
+    13700002: BellyOrb
+    13700004: ChestOrb
+    13700006: Eyes
+    13700008: Laser
+    13700010: OrbEffect
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Root
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

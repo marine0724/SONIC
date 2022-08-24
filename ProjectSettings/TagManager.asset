@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TargetOfRader
+  - Bullet
+  - Red
+  - Green
+  - Blue
+  - JumpPoint
   layers:
   - Default
   - TransparentFX
@@ -12,9 +18,9 @@ TagManager:
   - Water
   - UI
   - Floor
-  - 
-  - 
-  - 
+  - FirePosition
+  - Bullet
+  - Object
   - MotionBlur
   - 
   - 
