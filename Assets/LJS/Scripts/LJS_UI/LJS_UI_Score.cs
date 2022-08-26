@@ -3,45 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
 public class LJS_UI_Score : MonoBehaviour
 {
-    TextMeshProUGUI score;
 
-    string timerCheck;
-    bool isTimerOn;
-    float time;
-    string[] ClockText = new string[3];
+    // 싱글톤으로 구현
+    public static LJS_UI_Score Instance;
+    public void Awake()
+    {
 
+        Instance = this;
+    }
+
+    // 링을 먹으면 점수가 100점씩 올라가게 하고싶다.
+    // 나중에 Enemy 를 잡아도 점수 100점씩 올라가게 할 거임
+    // 필요속성 : 점수
+
+    TextMeshProUGUI score_UI;
+
+    int _score = 0;
+
+    public int Score
+    {
+        get
+        {
+            return _score;
+        }
+        set
+        {
+            _score = value;
+            score_UI.text = "Score : " + _score;
+
+            // 점수 변화할 때마다 작성
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        score = GetComponent<TextMeshProUGUI>();
+        score_UI = GetComponent<TextMeshProUGUI>();
 
-        isTimerOn = true;
     }
 
-    float msTime;
 
     // Update is called once per frame
     void Update()
     {
-        if (isTimerOn)
-        {
-            time += Time.deltaTime;
-            msTime += 100*Time.deltaTime;
-
-            //분
-            ClockText[0] = ((int)time / 60 % 60).ToString();
-            //초
-            ClockText[1] = ((int)time % 60).ToString();
-            //ms
-            ClockText[2] = ((int)msTime % 100).ToString();
-
-            score.text = string.Format("{0}:{1}:{2}", ClockText[0], ClockText[1], ClockText[2]);
-
-        }
 
 
     }
+
+
 }

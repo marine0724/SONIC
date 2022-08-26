@@ -30,6 +30,9 @@ public class LJS_Ring : MonoBehaviour
         if (other.gameObject == LJS_Player.Instance.gameObject)
         {
             print("트리거 들어옴");
+
+            LJS_UI_Score.Instance.Score += 100;
+
             Destroy(gameObject);
 
         }
