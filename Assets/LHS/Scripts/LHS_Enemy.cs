@@ -170,7 +170,7 @@ public class LHS_Enemy : MonoBehaviour
 
         // 최초의 에너미 상태 초기값 설정
         m_State = EnemyState.Idle;
-       
+
         // 자식의 스크립트를 가져온다.
         gunPosition = GetComponentInChildren<LHS_Gun>();
         wnColor = GetComponentInChildren<LHS_WNcolor>();
@@ -213,7 +213,7 @@ public class LHS_Enemy : MonoBehaviour
         // 플레이어와의 거리체크
         DistanceCheck();
         JumpGravity();
-       
+
         //현재 상태를 체크해 해당 상태별로 정해진 기능을 수행하게 하고 싶다.
         switch (m_State)
         {
@@ -252,7 +252,7 @@ public class LHS_Enemy : MonoBehaviour
             //점프를 위한 초기화
             speed = 3;
             currentJumpTime = 0;
-            
+
             //-------------------------------------------------------------------------------------------
             startPos = transform.position;
 
@@ -303,7 +303,7 @@ public class LHS_Enemy : MonoBehaviour
 
         }
 
-        else if (LHS_EnemyHP.Instance.HP >= 0 && LHS_EnemyHP.Instance.HP < 30 )
+        else if (LHS_EnemyHP.Instance.HP >= 0 && LHS_EnemyHP.Instance.HP < 30)
         {
             anim.SetTrigger("Jump2");
             m_JumpSM = EnemyJumpState.Jump3Attack;
@@ -382,7 +382,7 @@ public class LHS_Enemy : MonoBehaviour
             }
         }
 
-        else 
+        else
         {
             currentTime += Time.deltaTime;
 
@@ -400,7 +400,7 @@ public class LHS_Enemy : MonoBehaviour
     // 체력이 29보다 작을 때 // 시간이 흐르다가 일정시간이 되면 // 플레이어와 점프포인트 거리 중 가까운 포인트로 점프하며 이동하고 싶다.
     void Jump3Attack()
     {
-        if(!isWaiting)
+        if (!isWaiting)
         {
 
             Parabola2();
@@ -454,7 +454,7 @@ public class LHS_Enemy : MonoBehaviour
             //}
         }
 
-        else if(LHS_EnemyHP.Instance.HP >= 30 && LHS_EnemyHP.Instance.HP < 70)
+        else if (LHS_EnemyHP.Instance.HP >= 30 && LHS_EnemyHP.Instance.HP < 70)
         {
             //anim.SetTrigger("Swing");
             //m_attackSM = EnemyAttackState.SwingAttack;
@@ -465,7 +465,7 @@ public class LHS_Enemy : MonoBehaviour
         }
 
 
-        else if(LHS_EnemyHP.Instance.HP < 30)
+        else if (LHS_EnemyHP.Instance.HP < 30)
         {
             //anim.SetTrigger("Hammer");
             //m_attackSM = EnemyAttackState.HammerAttack;
@@ -495,13 +495,13 @@ public class LHS_Enemy : MonoBehaviour
             case EnemyAttackState.BulletAttack:
                 BulletAttack();
                 break;
-            //case EnemyAttackState.SwingAttack:
-            //    //isSwingAttack = true;
-            //    SwingAttack();
-            //    break;
-            //case EnemyAttackState.HammerAttack:
-            //    HammerAttack();
-            //    break;
+                //case EnemyAttackState.SwingAttack:
+                //    //isSwingAttack = true;
+                //    SwingAttack();
+                //    break;
+                //case EnemyAttackState.HammerAttack:
+                //    HammerAttack();
+                //    break;
         }
 
     }
@@ -594,7 +594,7 @@ public class LHS_Enemy : MonoBehaviour
             anim.SetTrigger("Weakness");
             m_State = EnemyState.Weakness;
         }
-    
+
     }
 
     // 해머는 아직!
@@ -612,39 +612,39 @@ public class LHS_Enemy : MonoBehaviour
             currentTime = 0;
         }
 
-            //if (distance < 30)
-            //{
-            //    currentTime += Time.deltaTime;
+        //if (distance < 30)
+        //{
+        //    currentTime += Time.deltaTime;
 
-            //    if (currentTime > delayTime)
-            //    {
-            //        // 랜덤값으로 상태를 전의한다.
-            //        // 다시 랜덤값을 준다
-            //        if (randWeak >= 6)
-            //        {
-            //            anim.SetTrigger("Weakness");
-            //            m_State = EnemyState.Weakness;
+        //    if (currentTime > delayTime)
+        //    {
+        //        // 랜덤값으로 상태를 전의한다.
+        //        // 다시 랜덤값을 준다
+        //        if (randWeak >= 6)
+        //        {
+        //            anim.SetTrigger("Weakness");
+        //            m_State = EnemyState.Weakness;
 
-            //            currentTime = 0;
-            //            randAttack = Random.Range(0, 10);
-            //        }
+        //            currentTime = 0;
+        //            randAttack = Random.Range(0, 10);
+        //        }
 
-            //        // 조건 고민 중
-            //        else
-            //        {
-            //            m_State = EnemyState.Jump;
+        //        // 조건 고민 중
+        //        else
+        //        {
+        //            m_State = EnemyState.Jump;
 
-            //            currentTime = 0;
-            //            randAttack = Random.Range(0, 10);
-            //        }
-            //    }
+        //            currentTime = 0;
+        //            randAttack = Random.Range(0, 10);
+        //        }
+        //    }
         //else
         //{
         //    m_State = EnemyState.Idle;
         //}
     }
 
-    
+
 
     //약점 : HP가 따라 나눔
     void Weakness()
@@ -659,24 +659,24 @@ public class LHS_Enemy : MonoBehaviour
 
         //else
         //{
-            currentTime += Time.deltaTime;
+        currentTime += Time.deltaTime;
 
-            if (currentTime <= 3.0f)
-            {
+        if (currentTime <= 3.0f)
+        {
 
-                wnColor.enabled = true;
-                mysfx.PlayOneShot(Weaknessfx);
+            wnColor.enabled = true;
+            mysfx.PlayOneShot(Weaknessfx);
 
             // 손 따라 다니는 거 / 스윙을 멈추기 위해 - 필요 없을거 같음!
             //gunPosition.enabled = false;
             //isSwingAttack = true;
         }
 
-            else
-            {
-                wnColor2.enabled = true;
-                m_State = EnemyState.Idle;
-            }
+        else
+        {
+            wnColor2.enabled = true;
+            m_State = EnemyState.Idle;
+        }
 
         //}
     }
@@ -687,18 +687,15 @@ public class LHS_Enemy : MonoBehaviour
     void Die()
     {
         // 도는거 멈춤!
-        if(isSwingAttack == false)
+        if (isSwingAttack == false)
         {
-                anim.SetTrigger("Die");
-                isSwingAttack = true;
-                wnColor2.enabled = true;
-                wnColor.enabled = false;
-                LHS_SceneManager.Instance.isDieOn = true;                      
+            anim.SetTrigger("Die");
+            isSwingAttack = true;
+            wnColor2.enabled = true;
+            wnColor.enabled = false;
+            LHS_SceneManager.Instance.isDieOn = true;
         }
     }
-
-
-
 
     //************************** 필요 함수 *************************//
 
@@ -751,7 +748,7 @@ public class LHS_Enemy : MonoBehaviour
 
             //isJump = false;
 
-            
+
         }
 
         // 땅이 아니면 중력값을 더해짐
@@ -888,14 +885,14 @@ public class LHS_Enemy : MonoBehaviour
         LHS_EnemyHP.Instance.HP -= hitPower;
 
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         // 닿인 대상이 플레이어이고
         if (other.gameObject.name.Contains("Player"))
         {
             // 나의 상태가 약점 상태가 아니라면
-            if(m_State != EnemyState.Weakness)
+            if (m_State != EnemyState.Weakness)
             {
                 print("플레이어-10");
                 // 플레이어의 피를 깎는다.

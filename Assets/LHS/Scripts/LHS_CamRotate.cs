@@ -78,7 +78,6 @@ public class LHS_CamRotate : MonoBehaviour
         if (Player.Instance.isDash == true)
         {
             distance = Mathf.Lerp(distance, 40, 4 * Time.deltaTime);
-
         }
 
     }
