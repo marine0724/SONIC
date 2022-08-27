@@ -495,7 +495,7 @@ public class Player : MonoBehaviour
             {
                 if (!isWeaknessAttack)
                 {
-                    LHS_EnemyHP.Instance.HP -= 20;
+                    LHS_EnemyHP.Instance.HP -= 10;
                     isWeaknessAttack = true;
                 }
             }

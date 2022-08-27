@@ -63,7 +63,7 @@ public class LHS_E_BulletCtrl : MonoBehaviour
         {
             print("총알-1");
             // 플레이어의 피를 깎는다.
-            LHS_PlayerHP.Instance.HP -= 10;
+            LHS_PlayerHP.Instance.HP -= 5;
             Destroy(gameObject);
         }
         else

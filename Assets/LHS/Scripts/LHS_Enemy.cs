@@ -769,7 +769,7 @@ public class LHS_Enemy : MonoBehaviour
             {
                 print("플레이어-10");
                 // 플레이어의 피를 깎는다.
-                LHS_PlayerHP.Instance.HP -= 10;
+                LHS_PlayerHP.Instance.HP -= 5;
             }
         }
     }
