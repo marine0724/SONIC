@@ -74,14 +74,6 @@ public class LHS_Enemy : MonoBehaviour
 
     #endregion
 
-    //#region 체력 속성
-    //// 필요속성 : HP , 최대 HP , HP Silder변수
-    //[Header("체력")]
-    //public int hp = 100;
-    //int maxHP = 100;
-    //public Slider hpSlider;
-    //#endregion
-
     #region 플레이어 거리 속성
     // (플레이어 - 나) / (플레이어 - 점프2 target) / (플레이어 - 점프3 point)
     [Header("플레이어와의 거리")]
@@ -133,21 +125,20 @@ public class LHS_Enemy : MonoBehaviour
     public enum EnemyAttackState
     {
         BulletAttack,
-        SwingAttack,
-        HammerAttack
+        //SwingAttack,
+        //HammerAttack
     }
 
     public enum EnemyJumpState
     {
-        //Jump1Attack,
         Jump2Attack,
         Jump3Attack
     }
 
     // 에너미 상태 변수
     public EnemyState m_State;
-    EnemyAttackState m_attackSM;
-    EnemyJumpState m_JumpSM;
+    public EnemyAttackState m_attackSM;
+    public EnemyJumpState m_JumpSM;
 
     public static LHS_Enemy Instance;
 
@@ -176,17 +167,8 @@ public class LHS_Enemy : MonoBehaviour
         wnColor = GetComponentInChildren<LHS_WNcolor>();
         wnColor2 = GetComponentInChildren<LHS_WNcolor2>();
 
-        // 태어날 때 Idle 상태 전의 시간을 설정하고 싶다
-        //createTime = Random.Range(minTime, maxTime);
-
         // 점프2 -> 랜덤 위치 값
-        num = Random.Range(0, 8);
-
-        // 공격 -> 랜덤 값
-        //randAttack = Random.Range(0, 10);
-        //randWeak = Random.Range(0, 10);
-        //print("randAttack" + randAttack);
-        //print("randWeak" + randAttack);
+        num = Random.Range(0, 9);
 
         // 점프3 -> 점프 포인트 배열에 담기 (한꺼번에 관리하기 위해)
         // 거리의 초기값을 설정 -> 나중에 비교하기 위해서 사용
@@ -199,17 +181,12 @@ public class LHS_Enemy : MonoBehaviour
     // 플레이어 바라보기
     private void FixedUpdate()
     {
-
         Turn();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 현재 hp(%)를 hp 슬라이더의 value에 반영한다.
-        //hpSlider.value = (float)hp / (float)maxHP;
-
         // 플레이어와의 거리체크
         DistanceCheck();
         JumpGravity();
@@ -233,7 +210,6 @@ public class LHS_Enemy : MonoBehaviour
                 Die();
                 break;
         }
-
     }
 
     //************************** 상태 함수 ************************//
@@ -293,27 +269,23 @@ public class LHS_Enemy : MonoBehaviour
         {
             // 공격으로 간다.
             m_State = EnemyState.Attack;
-            //m_JumpSM = EnemyJumpState.Jump1Attack;
         }
 
         else if (LHS_EnemyHP.Instance.HP >= 30 && LHS_EnemyHP.Instance.HP < 70)
         {
-            anim.SetTrigger("Jump1");
+            //anim.SetTrigger("Jump1");
             m_JumpSM = EnemyJumpState.Jump2Attack;
 
         }
 
         else if (LHS_EnemyHP.Instance.HP >= 0 && LHS_EnemyHP.Instance.HP < 30)
         {
-            anim.SetTrigger("Jump2");
+            //anim.SetTrigger("Jump2");
             m_JumpSM = EnemyJumpState.Jump3Attack;
         }
 
         switch (m_JumpSM)
         {
-            //case EnemyJumpState.Jump1Attack:
-            //    Jump1Attack();
-            //    break;
             case EnemyJumpState.Jump2Attack:
                 Jump2Attack();
                 break;
@@ -323,53 +295,12 @@ public class LHS_Enemy : MonoBehaviour
         }
     }
 
-    // 체력이 60보다 크거나 같을 때 // 시간이 흐르다가 일정시간이 되면 // 위로 점프를 하고 싶다
-    //void Jump1Attack()
-    //{
-    //    // 대기 상태가 아니라면
-    //    if(!isWaiting)
-    //    {
-    //        // 1. 만약 isJump가 false라면 (yVelocity = 0)
-    //        if (isJump == false)
-    //        {
-
-    //            yVelocity = jumpPower;
-
-    //            //isWaiting = true;
-
-    //            isJump = true;
-    //        }
-
-    //        else 
-    //        {
-    //            CamRotate.Instance.OnShakeCamera(0.2f, 0.8f);
-
-    //            isWaiting = true;
-    //        }
-
-    //    }
-
-    //    else
-    //    {
-
-    //        currentTime += Time.deltaTime;
-
-    //        if (currentTime > jump1DelayTime)
-    //        {
-
-    //            ResetWaiting();
-
-    //            m_State = EnemyState.Attack;
-
-    //        }
-    //    }
-    //}
-
     // 체력이 30 ~ 59 일 때 // 시간이 흐르다가 일정시간이 되면 // 랜덤한 위치로 점프하며 이동하고 싶다. (Start 부분에서 랜덤 값 설정)
     void Jump2Attack()
     {
         if (!isWaiting)
         {
+            anim.SetTrigger("Jump1");
             Parabola1();
 
             //내 거리와 목적지 거리가 1.5보다 작으면 상태 전의하고 싶다.
@@ -390,7 +321,7 @@ public class LHS_Enemy : MonoBehaviour
             {
                 ResetWaiting();
 
-                num = Random.Range(0, 8);
+                num = Random.Range(0, 9);
 
                 m_State = EnemyState.Attack;
             }
@@ -402,7 +333,7 @@ public class LHS_Enemy : MonoBehaviour
     {
         if (!isWaiting)
         {
-
+            anim.SetTrigger("Jump2");
             Parabola2();
 
             //내 거리와 목적지 거리가 1.5보다 작으면 상태 전의하고 싶다.
@@ -442,52 +373,18 @@ public class LHS_Enemy : MonoBehaviour
             anim.SetTrigger("Bullet");
             m_attackSM = EnemyAttackState.BulletAttack;
 
-            //if (randAttack <= 5)
-            //{
-            //    anim.SetTrigger("Bullet");
-            //    m_attackSM = EnemyAttackState.BulletAttack;
-            //}
-            //else
-            //{
-            //    anim.SetTrigger("Swing");
-            //    m_attackSM = EnemyAttackState.SwingAttack;
-            //}
         }
 
         else if (LHS_EnemyHP.Instance.HP >= 30 && LHS_EnemyHP.Instance.HP < 70)
         {
-            //anim.SetTrigger("Swing");
-            //m_attackSM = EnemyAttackState.SwingAttack;
-
             anim.SetTrigger("Bullet");
             m_attackSM = EnemyAttackState.BulletAttack;
-
         }
-
 
         else if (LHS_EnemyHP.Instance.HP < 30)
         {
-            //anim.SetTrigger("Hammer");
-            //m_attackSM = EnemyAttackState.HammerAttack;
-
             anim.SetTrigger("Bullet");
             m_attackSM = EnemyAttackState.BulletAttack;
-
-            //if (randAttack <= 5)
-            //{
-            //    anim.SetTrigger("Bullet");
-            //    m_attackSM = EnemyAttackState.BulletAttack;
-            //}
-            //else if (randAttack > 6 && randAttack <= 10)
-            //{
-            //    anim.SetTrigger("Swing");
-            //    m_attackSM = EnemyAttackState.SwingAttack;
-            //}
-            //else
-            //{
-            //    anim.SetTrigger("Hammer");
-            //    m_attackSM = EnemyAttackState.HammerAttack;
-            //}
         }
 
         switch (m_attackSM)
@@ -495,15 +392,7 @@ public class LHS_Enemy : MonoBehaviour
             case EnemyAttackState.BulletAttack:
                 BulletAttack();
                 break;
-                //case EnemyAttackState.SwingAttack:
-                //    //isSwingAttack = true;
-                //    SwingAttack();
-                //    break;
-                //case EnemyAttackState.HammerAttack:
-                //    HammerAttack();
-                //    break;
         }
-
     }
 
     // 원거리 공격 (20보다 크다면) - 거리에 들지 않는다면 // 시간이 흐르다 딜레이 시간이 되면 // 플레이어 방향으로 총알 10발 발사하고 싶다
@@ -532,15 +421,13 @@ public class LHS_Enemy : MonoBehaviour
                 currentBullet = 10;
                 ResetWaiting();
 
-                //randAttack = Random.Range(0, 10);
-
                 anim.SetTrigger("Weakness");
+                mysfx.PlayOneShot(Weaknessfx);
                 m_State = EnemyState.Weakness;
             }
         }
     }
 
-    // 근거리 공격 (50 안에 든다면) // 다시 플레이어를 바라보고 싶다 // 코루틴으로 지연시간을 줘서 실행하고 싶다. -> 플레이어에게 알려야하기 때문에
     void SwingAttack()
     {
         //if (!isWaiting)
@@ -582,35 +469,32 @@ public class LHS_Enemy : MonoBehaviour
         //}
 
         // 시간이 흐르다 딜레이 시간이 되면
-        currentTime += Time.deltaTime;
+        //currentTime += Time.deltaTime;
 
-        if (currentTime > delayTime)
-        {
-            currentBullet = 10;
-            //ResetWaiting();
+        //if (currentTime > delayTime)
+        //{
+        //    currentBullet = 10;
+        //    //ResetWaiting();
 
-            randAttack = Random.Range(0, 10);
+        //    randAttack = Random.Range(0, 10);
 
-            anim.SetTrigger("Weakness");
-            m_State = EnemyState.Weakness;
-        }
+        //    anim.SetTrigger("Weakness");
+        //    m_State = EnemyState.Weakness;
+        //}
 
     }
 
-    // 해머는 아직!
-    // 강력점프 구현하면 가능함
-    // 근거리공격
     void HammerAttack()
     {
-        currentTime += Time.deltaTime;
+        //currentTime += Time.deltaTime;
 
-        if (currentTime > delayTime)
-        {
-            anim.SetTrigger("Weakness");
-            m_State = EnemyState.Weakness;
+        //if (currentTime > delayTime)
+        //{
+        //    anim.SetTrigger("Weakness");
+        //    m_State = EnemyState.Weakness;
 
-            currentTime = 0;
-        }
+        //    currentTime = 0;
+        //}
 
         //if (distance < 30)
         //{
@@ -644,41 +528,34 @@ public class LHS_Enemy : MonoBehaviour
         //}
     }
 
-
-
     //약점 : HP가 따라 나눔
     void Weakness()
     {
-        //if (hp <= 0)
-        //{
-        //    anim.SetTrigger("Die");
-        //    //m_State = EnemyState.Die;
-        //}
-
         //// 시간이 흐르다 // 현재시간이 약점시간때까지만 약점시스템을 작동하고싶다. // hp가 40이하일때는 3초 아니면 2초 // 플레이어가 닿는다면 hp를 깎는다
-
-        //else
-        //{
-        currentTime += Time.deltaTime;
-
-        if (currentTime <= 3.0f)
+        if (!isWaiting)
         {
 
-            wnColor.enabled = true;
-            mysfx.PlayOneShot(Weaknessfx);
+            currentTime += Time.deltaTime;
 
-            // 손 따라 다니는 거 / 스윙을 멈추기 위해 - 필요 없을거 같음!
-            //gunPosition.enabled = false;
-            //isSwingAttack = true;
+            if (currentTime <= 3.0f)
+            {
+                wnColor.enabled = true;
+            }
+
+            else
+            {
+                isWaiting = true;
+            }
         }
 
         else
         {
+            ResetWaiting();
+
+            anim.SetTrigger("Idle");
             wnColor2.enabled = true;
             m_State = EnemyState.Idle;
         }
-
-        //}
     }
 
 
@@ -711,10 +588,6 @@ public class LHS_Enemy : MonoBehaviour
     {
         wnColor.enabled = false;
         wnColor.enabled = false;
-
-        // 삭제 가능
-        //isSwingAttack = false;
-        //gunPosition.enabled = true;
     }
 
     // 스윙공격을 하지 않는다면 // 계속 플레이어 쪽을 바라보고 싶다
