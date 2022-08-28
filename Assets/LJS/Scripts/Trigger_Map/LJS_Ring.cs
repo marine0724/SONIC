@@ -9,14 +9,14 @@ public class LJS_Ring : MonoBehaviour
     // 플레이어가 먹으면 사라지면서 소리남
 
 
-    public AudioSource audioSource;
+    AudioSource audioSource;
 
     float rotSpeed = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GameObject.Find("SoundMgr_Ring").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -38,6 +38,7 @@ public class LJS_Ring : MonoBehaviour
 
             audioSource.Stop();
             audioSource.Play();
+            //audioSource.PlayOneShot(Resources.Load<AudioClip>("Audio/RingSound_Trim_"));
 
             Destroy(gameObject);
 

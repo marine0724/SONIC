@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class LJS_Trigger_Jump : MonoBehaviour
 {
+
+    AudioSource springJump;
+
+    private void Start()
+    {
+        springJump = GameObject.Find("SoundMgr_SpringJump").GetComponent<AudioSource>();
+
+    }
+
+
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -11,8 +22,13 @@ public class LJS_Trigger_Jump : MonoBehaviour
 
         if (other.gameObject == LJS_Player.Instance.gameObject)
         {
+            LJS_Player.Instance.isAttackOn = false;
+            LJS_Player.Instance.yVelocity = 20;
+
             print("มกวม!");
-            LJS_Player.Instance.yVelocity = 30;
+            springJump.Stop();
+            springJump.Play();
+
 
         }
     }

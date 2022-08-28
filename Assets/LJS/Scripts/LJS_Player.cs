@@ -59,12 +59,15 @@ public class LJS_Player : MonoBehaviour
     public bool isRader;
     public bool isBuzz;
     bool isJump = false;
-    bool isAttackOn;
+    public bool isAttackOn;
     bool isJumpFall;
 
     #region 레이더 관련 변수
     [Header("타겟 캔버스")]
     public GameObject Target_Canvas;
+    public GameObject dashEffect_Canvas;
+
+    Image dashEffect;
 
     float curTime_2;
     float raderTime = 0.2f;
@@ -74,13 +77,17 @@ public class LJS_Player : MonoBehaviour
 
     Animator anim;
 
+    AudioSource jumpSound;
+    AudioSource dashSound;
+    AudioSource explosionSound;
+
+
+    public GameObject dashParticle;
+
     void Start()
     {
-        //캐릭터컨트롤러 컴포넌트 가져오기
-        cc = GetComponent<CharacterController>();
-
-        // 애니메이션 자식한테서 가져오기
-        anim = GetComponentInChildren<Animator>();
+        // 컴포넌트들 불러오기
+        ComponentLoad();
     }
 
 
@@ -131,6 +138,20 @@ public class LJS_Player : MonoBehaviour
     //        dashEffect.Stop();
     //}
 
+
+    private void ComponentLoad()
+    {
+        //캐릭터컨트롤러 컴포넌트 가져오기
+        cc = GetComponent<CharacterController>();
+
+        // 애니메이션 자식한테서 가져오기
+        anim = GetComponentInChildren<Animator>();
+
+        // 점프, 대쉬 사운드 가져오기
+        jumpSound = GameObject.Find("SoundMgr_Jump").GetComponent<AudioSource>();
+        dashSound = GameObject.Find("SoundMgr_Dash").GetComponent<AudioSource>();
+        explosionSound = GameObject.Find("SoundMgr_Explosion").GetComponent<AudioSource>();
+    }
 
     private void AnimationController()
     {
@@ -253,6 +274,7 @@ public class LJS_Player : MonoBehaviour
         // 땅에 닿아 있거나 isAttackOn 이 켜져있을 때
         if (cc.collisionFlags == CollisionFlags.Below)
         {
+
             yVelocity = 0;
             jumpCount = 0;
             isJump = false;
@@ -272,6 +294,10 @@ public class LJS_Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpCount < jumpCountMax && !isRaderReady)
         {
+            // 점프 사운드
+            jumpSound.Stop();
+            jumpSound.Play();
+
             anim.Play("Jump");
             print(jumpCount);
             isJump = true;
@@ -284,16 +310,20 @@ public class LJS_Player : MonoBehaviour
     [Header("스피드 테스트")]
     public float speedTest = 10;
 
+    bool isDashEffectOn;
+
     public void Dash()
     {
-        // LeftShift 누르면 스피드 50 증가
-
-
 
         // 속도가 10이 넘으면 계속 감속하게 해야함.
         if (speed > speedTest)
         {
-            speed -= 5 * Time.deltaTime;
+            if (speed > 17)
+                dashParticle.SetActive(true);
+            else
+                dashParticle.SetActive(false);
+
+            speed -= 2.5f * Time.deltaTime;
 
             if (speed > 30)
             {
@@ -308,6 +338,14 @@ public class LJS_Player : MonoBehaviour
         // leftShift 누르면 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            // 이펙트도 켜지게 해야함
+            dashEffect_Canvas.GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
+            isDashEffectOn = true;
+
+
+            dashSound.Stop();
+            dashSound.Play();
+
             // 대쉬 켜져있는 상태.
             isDash = true;
 
@@ -317,6 +355,28 @@ public class LJS_Player : MonoBehaviour
             //CamRotate.Instance.OnShakeCamera_Rot(0.1f, 2f);
 
             speed += 10;
+        }
+
+        // 이펙트 꺼지게 하는요소
+        // 대시이펙트 켜지면
+        if (isDashEffectOn)
+        {
+            // 알파값을 확 줄인다.
+            if (dashEffect_Canvas.GetComponent<Image>().color.a > 0.1f)
+            { 
+                dashEffect_Canvas.GetComponent<Image>().color += new Color(1, 1, 1, -1.3f * Time.deltaTime);
+                print("들어옴!");
+            
+            }
+            //만약 0보다 작아지면
+            else
+            {
+                print("들어옴???");
+                //0으로만들고
+                dashEffect_Canvas.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+                // 이펙트온 false 로
+                isDashEffectOn = false;
+            }
         }
 
         //대쉬가 true 이면
@@ -499,10 +559,19 @@ public class LJS_Player : MonoBehaviour
             if (hit.gameObject.layer == LayerMask.NameToLayer("Object"))
             {
                 isAttackOn = false;
-
+                // 애니메이션
+                anim.SetTrigger("SpringJump");
             }
+
+
             else
             {
+                // 폭발 효과 나오게
+                GameObject explosion = GameObject.Instantiate(Resources.Load<GameObject>("Explosion"));
+                explosion.transform.position = hit.transform.position;
+                explosionSound.Stop();
+                explosionSound.Play();
+
                 //카메라 흔들고
                 LJS_CamRotate.Instance.OnShakeCamera(0.2f, 0.3f);
 
