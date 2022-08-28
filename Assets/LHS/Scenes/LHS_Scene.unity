@@ -572,13 +572,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93659920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0001553248, y: 8.030384, z: -119.854004}
+  m_LocalPosition: {x: 0.00015933925, y: 8.030384, z: -119.854004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 10.14, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -19, y: 0, z: 0}
 --- !u!1 &97840748
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,7 +3321,7 @@ MonoBehaviour:
   Weaknessfx: {fileID: 8300000, guid: e2fd05d43ecd894429b20ac661e11bef, type: 3}
   Jump2fx: {fileID: 8300000, guid: caa0315d5395e1448b7da3f85ce84260, type: 3}
   Jump3fx: {fileID: 8300000, guid: caa0315d5395e1448b7da3f85ce84260, type: 3}
-  Bulletfx: {fileID: 8300000, guid: 4defb02615b5e824db82cda7e995bfd2, type: 3}
+  Bulletfx: {fileID: 8300000, guid: 8b4a2e87c2b285f4489621ee4c4a9823, type: 3}
   JumpEffect: {fileID: 8370352770308684677}
   BulletEffect: {fileID: 1939539027}
   m_State: 0
@@ -8092,7 +8092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939539024}
   m_LocalRotation: {x: -0.04405689, y: 0.027180621, z: -0.7172089, w: -0.6949329}
-  m_LocalPosition: {x: 0.381, y: 0.946, z: 0.968}
+  m_LocalPosition: {x: 0.379, y: 1.004, z: 0.974}
   m_LocalScale: {x: 4.5985847, y: 4.5985894, z: 4.5985866}
   m_ConstrainProportionsScale: 1
   m_Children: []

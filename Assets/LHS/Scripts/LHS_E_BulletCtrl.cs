@@ -10,7 +10,6 @@ public class LHS_E_BulletCtrl : MonoBehaviour
 
     Rigidbody rigid;
 
-
     // ÃÑ¾Ë È¿°ú
     // public ParticleSystem bulletPS;
     //public GameObject bulletGO;

@@ -496,10 +496,11 @@ public class Player : MonoBehaviour
             {
                 Test.Play();
                 Test2.Play();
+
                 WeaknessEffect.SetActive(true);
                 WeaknessEffect_particle.Stop();
                 WeaknessEffect_particle.Play();
-                WeaknessEffect.transform.position = transform.position + new Vector3(0, 0, 0.5f);
+                WeaknessEffect.transform.position = transform.position; //+ new Vector3(0, 0, 0.5f);
 
                 //카메라 흔들고
                 LHS_CamRotate.Instance.OnShakeCamera(0.2f, 0.3f);

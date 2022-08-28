@@ -98,8 +98,8 @@ public class LHS_Enemy : MonoBehaviour
     // Idle상태에서 랜덤 시간
     float createTime = 1.5f;
 
-    float minTime = 1.0f;
-    float maxTime = 1.5f;
+    //float minTime = 1.0f;
+    //float maxTime = 1.5f;
     #endregion
 
     CharacterController cc;
@@ -418,18 +418,15 @@ public class LHS_Enemy : MonoBehaviour
         }
     }
 
-    // 원거리 공격 (20보다 크다면) - 거리에 들지 않는다면 // 시간이 흐르다 딜레이 시간이 되면 // 플레이어 방향으로 총알 10발 발사하고 싶다
+    // 원거리 공격 (20보다 크다면) - 거리에 들지 않는다면 // 시간이 흐르다 딜레이 aaaaaaad시간이 되면 // 플레이어 방향으로 총알 10발 발사하고 싶다
     void BulletAttack()
     {
         if (!isWaiting)
         {
             if (currentBullet > 0)
             {
-                
 
                 anim.SetTrigger("Bullet");
-
-                
                 Fire();
             }
 
@@ -705,6 +702,11 @@ public class LHS_Enemy : MonoBehaviour
 
             // 랜덤한 딜레이를 주면 좀 더 리얼한 느낌을 줄 수 있음
             nextFire = Time.time + fireRate + Random.Range(0.0f, 0.3f);
+
+            if (currentBullet == 9)
+            {
+                mysfx.PlayOneShot(Bulletfx);
+            }
         }
     }
 
