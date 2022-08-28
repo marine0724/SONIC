@@ -20,7 +20,7 @@ public class LHS_SceneManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "LHS_Start1")
         {
-            if (Input.anyKey)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 SceneManager.LoadScene("LHS_Start2");
             }
