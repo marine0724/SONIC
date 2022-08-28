@@ -69,7 +69,6 @@ public class LHS_E_BulletCtrl : MonoBehaviour
         else
         {
             Destroy(gameObject);
-
         }
     }
 }

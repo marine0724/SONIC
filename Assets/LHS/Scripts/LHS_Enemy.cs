@@ -110,8 +110,14 @@ public class LHS_Enemy : MonoBehaviour
     LHS_WNcolor wnColor;
     LHS_WNcolor2 wnColor2;
 
+    //사운드 효과
     public AudioSource mysfx;
     public AudioClip Weaknessfx;
+    public AudioClip Jump2fx;
+    public AudioClip Jump3fx;
+
+    // 이펙트 효과
+    public ParticleSystem JumpEffect;
 
     public enum EnemyState
     {
@@ -131,6 +137,7 @@ public class LHS_Enemy : MonoBehaviour
 
     public enum EnemyJumpState
     {
+        Jump1Attack,
         Jump2Attack,
         Jump3Attack
     }
@@ -265,27 +272,30 @@ public class LHS_Enemy : MonoBehaviour
     // HP로 나눔
     void Jump()
     {
-        if (LHS_EnemyHP.Instance.HP >= 70)
+        if (LHS_EnemyHP.Instance.HP >= 80)
         {
             // 공격으로 간다.
-            m_State = EnemyState.Attack;
+            m_JumpSM = EnemyJumpState.Jump1Attack;
         }
 
-        else if (LHS_EnemyHP.Instance.HP >= 30 && LHS_EnemyHP.Instance.HP < 70)
+        else if (LHS_EnemyHP.Instance.HP >= 40 && LHS_EnemyHP.Instance.HP < 80)
         {
-            //anim.SetTrigger("Jump1");
+            anim.SetTrigger("Jump1");
             m_JumpSM = EnemyJumpState.Jump2Attack;
 
         }
 
-        else if (LHS_EnemyHP.Instance.HP >= 0 && LHS_EnemyHP.Instance.HP < 30)
+        else if (LHS_EnemyHP.Instance.HP >= 0 && LHS_EnemyHP.Instance.HP < 40)
         {
-            //anim.SetTrigger("Jump2");
+            anim.SetTrigger("Jump2");
             m_JumpSM = EnemyJumpState.Jump3Attack;
         }
 
         switch (m_JumpSM)
         {
+            case EnemyJumpState.Jump1Attack:
+                Jump1Attack();
+                break;
             case EnemyJumpState.Jump2Attack:
                 Jump2Attack();
                 break;
@@ -295,12 +305,18 @@ public class LHS_Enemy : MonoBehaviour
         }
     }
 
+    void Jump1Attack()
+    {
+        m_State = EnemyState.Attack;
+    }
+
     // 체력이 30 ~ 59 일 때 // 시간이 흐르다가 일정시간이 되면 // 랜덤한 위치로 점프하며 이동하고 싶다. (Start 부분에서 랜덤 값 설정)
     void Jump2Attack()
     {
         if (!isWaiting)
         {
-            anim.SetTrigger("Jump1");
+            
+            //anim.SetTrigger("Jump1");
             Parabola1();
 
             //내 거리와 목적지 거리가 1.5보다 작으면 상태 전의하고 싶다.
@@ -333,7 +349,8 @@ public class LHS_Enemy : MonoBehaviour
     {
         if (!isWaiting)
         {
-            anim.SetTrigger("Jump2");
+            
+            //anim.SetTrigger("Jump2");
             Parabola2();
 
             //내 거리와 목적지 거리가 1.5보다 작으면 상태 전의하고 싶다.
@@ -367,7 +384,7 @@ public class LHS_Enemy : MonoBehaviour
     void Attack()
     {
 
-        if (LHS_EnemyHP.Instance.HP >= 70)
+        if (LHS_EnemyHP.Instance.HP >= 80)
         {
 
             anim.SetTrigger("Bullet");
@@ -375,13 +392,13 @@ public class LHS_Enemy : MonoBehaviour
 
         }
 
-        else if (LHS_EnemyHP.Instance.HP >= 30 && LHS_EnemyHP.Instance.HP < 70)
+        else if (LHS_EnemyHP.Instance.HP >= 40 && LHS_EnemyHP.Instance.HP < 80)
         {
             anim.SetTrigger("Bullet");
             m_attackSM = EnemyAttackState.BulletAttack;
         }
 
-        else if (LHS_EnemyHP.Instance.HP < 30)
+        else if (LHS_EnemyHP.Instance.HP < 40)
         {
             anim.SetTrigger("Bullet");
             m_attackSM = EnemyAttackState.BulletAttack;
@@ -708,7 +725,7 @@ public class LHS_Enemy : MonoBehaviour
             // 현재지점에서 목표지점으로 이동 + 센터값을 빼주고 더해줌
             transform.position = Vector3.Slerp(startPos - center, endPos - center, ratio) + center;
             // 카메라의 흔들림을 준다 -> 강력해보이기 위해
-            LHS_CamRotate.Instance.OnShakeCamera(0.5f, 0.9f);
+            LHS_CamRotate.Instance.OnShakeCamera(0.5f, 0.99f);
 
             // 중간지점에 갔다면 가속되는 수치를 더해준다
             if (ratio >= 0.5f)
@@ -719,6 +736,9 @@ public class LHS_Enemy : MonoBehaviour
             // 도착했다면
             if (ratio >= 1)
             {
+                JumpEffect.Play();
+                mysfx.PlayOneShot(Jump2fx);
+
                 //점프 공격을 멈춘다.
                 isJumpAttack = false;
             }
@@ -744,6 +764,8 @@ public class LHS_Enemy : MonoBehaviour
 
             if (ratio >= 1)
             {
+                JumpEffect.Play();
+                mysfx.PlayOneShot(Jump3fx);
                 isJumpAttack2 = false;
             }
         }

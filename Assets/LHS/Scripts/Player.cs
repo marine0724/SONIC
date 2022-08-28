@@ -73,8 +73,14 @@ public class Player : MonoBehaviour
     float raderTime = 0.2f;
 
     bool isRaderReady;
-    #endregion 
+    #endregion
 
+    // 이펙트 효과
+    public GameObject WeaknessEffect;
+    public ParticleSystem WeaknessEffect_particle;
+    // 사운드효과
+    public AudioSource playersfx;
+    public AudioClip Weak_Attackfx;
 
     void Start()
     {
@@ -231,6 +237,7 @@ public class Player : MonoBehaviour
         // 땅에 닿아 있거나 isAttackOn 이 켜져있을 때
         if (cc.collisionFlags == CollisionFlags.Below)
         {
+            //WeaknessEffect.SetActive(false);
 
             isWeaknessAttack = false;
             yVelocity = 0;
@@ -384,6 +391,7 @@ public class Player : MonoBehaviour
                     //Target_Canvas.GetComponent<Image>().color = Color.red;
                     // 레디 온
                     isRaderReady = true;
+                    //Target_Canvas.SetActive(false);
                 }
             }
         }
@@ -463,11 +471,13 @@ public class Player : MonoBehaviour
 
 
     float curTime_3;
-    float slowFinishTime = 0.05f;
+    float slowFinishTime = 0.03f;
 
     bool isAttackSucces;
 
     bool isWeaknessAttack;
+    bool isWeakness_effect;
+
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -475,6 +485,7 @@ public class Player : MonoBehaviour
         // isAttackOn 을 끈다.
         if (hit.gameObject.tag == "TargetOfRader")
         {
+                    
             //카메라 흔들고
             LHS_CamRotate.Instance.OnShakeCamera(0.2f, 0.3f);
 
@@ -486,7 +497,6 @@ public class Player : MonoBehaviour
 
             anim.SetTrigger("SpringJump");
 
-
             // isAttackOn 을 끈다
             isAttackOn = false;
             //Destroy(hit.gameObject);
@@ -496,8 +506,19 @@ public class Player : MonoBehaviour
 
             if (LHS_Enemy.Instance.m_State == LHS_Enemy.EnemyState.Weakness)
             {
-                if (!isWeaknessAttack)
+                if (isWeaknessAttack)
                 {
+                    WeaknessEffect.SetActive(true);
+                    WeaknessEffect_particle.Stop();
+                    WeaknessEffect_particle.Play();
+                    WeaknessEffect.transform.position = transform.position + new Vector3(0, 0, 0.5f);
+                }
+
+                // 플레이어가 땅에 닿았을 때
+                if (!isWeaknessAttack)
+                { 
+                    playersfx.PlayOneShot(Weak_Attackfx);
+
                     LHS_EnemyHP.Instance.HP -= 10;
                     isWeaknessAttack = true;
                 }
