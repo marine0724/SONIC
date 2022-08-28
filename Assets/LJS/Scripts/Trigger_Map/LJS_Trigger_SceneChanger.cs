@@ -43,6 +43,8 @@ public class LJS_Trigger_SceneChanger : MonoBehaviour
             {
                 print("¾À¹Ù²ñ");
                 currentTime = 0;
+                Time.timeScale = 1f;
+
                 SceneManager.LoadScene("LHS_Scene");
                 break;
             }
