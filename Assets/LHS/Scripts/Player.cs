@@ -367,28 +367,31 @@ public class Player : MonoBehaviour
         // isRader 가 켜지면, 가장 가까운 오브젝트에게 TargetCanvas 를 키게 하고싶다.
         if (isRader == true)
         {
-            //조준점을 키고
-            Target_Canvas.SetActive(true);           
-            //나한테 가져다 놓기
-            Target_Canvas.transform.position = FindNearestObjectByTag(TargetOfRader).transform.position + (transform.position - FindNearestObjectByTag(TargetOfRader).transform.position).normalized * 5;
-            //계속 플레이어를 바라보게
-            Target_Canvas.transform.forward = transform.position - FindNearestObjectByTag(TargetOfRader).transform.position;
-
-            // 0.2초 있다가 Ready 되게 하고싶다.
-            curTime_2 += Time.deltaTime;
-            if (curTime_2 > raderTime)
+            if (LHS_Enemy.Instance.m_State == LHS_Enemy.EnemyState.Weakness)
             {
-                // 이미지의 색을 빨강으로 바꾸고
-                Target_Canvas.GetComponent<Image>().color = Color.red;
-                // 레디 온
-                isRaderReady = true;
+                //조준점을 키고
+                Target_Canvas.SetActive(true);
+                //나한테 가져다 놓기
+                Target_Canvas.transform.position = FindNearestObjectByTag(TargetOfRader).transform.position + (transform.position - FindNearestObjectByTag(TargetOfRader).transform.position).normalized * 5;
+                //계속 플레이어를 바라보게
+                Target_Canvas.transform.forward = transform.position - FindNearestObjectByTag(TargetOfRader).transform.position;
+
+                // 0.2초 있다가 Ready 되게 하고싶다.
+                curTime_2 += Time.deltaTime;
+                if (curTime_2 > raderTime)
+                {
+                    // 이미지의 색을 빨강으로 바꾸고
+                    //Target_Canvas.GetComponent<Image>().color = Color.red;
+                    // 레디 온
+                    isRaderReady = true;
+                }
             }
         }
 
         // isRader 가 true 가 아니면 그냥 끄자
         else
         {
-            Target_Canvas.GetComponent<Image>().color = Color.blue;
+            //Target_Canvas.GetComponent<Image>().color = Color.blue;
             curTime_2 = 0;
             isRaderReady = false;
             Target_Canvas.SetActive(false);
