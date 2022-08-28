@@ -12,6 +12,7 @@ public class LHS_PlayerHP : MonoBehaviour
 
     public static LHS_PlayerHP Instance;
 
+
     // HP => property 로 바꾸고 싶다.
     public int HP
     {
@@ -25,6 +26,7 @@ public class LHS_PlayerHP : MonoBehaviour
 
             if (hp <= 0)
             {
+                Player.Instance.isDie = true;
                 print("플레이어 죽음");
             }
         }

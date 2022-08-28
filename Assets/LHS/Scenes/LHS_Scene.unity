@@ -1368,6 +1368,7 @@ RectTransform:
   - {fileID: 1656412676}
   - {fileID: 1955322218}
   - {fileID: 1065086619}
+  - {fileID: 1790953645}
   m_Father: {fileID: 829336279}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4174,7 +4175,7 @@ MonoBehaviour:
   campos2: {fileID: 93659921}
   speed1: 1.7
   speed2: 1.5
-  createTime: 0.3
+  createTime: 0.1
 --- !u!1001 &984008256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7354,6 +7355,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205c0848c3694994086d65bdc6736bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1790953644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1790953645}
+  - component: {fileID: 1790953647}
+  - component: {fileID: 1790953646}
+  m_Layer: 5
+  m_Name: Star
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1790953645
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790953644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 318205448}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1206.59, y: -104}
+  m_SizeDelta: {x: 512, y: 512}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1790953646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790953644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: bc9230d5008b87e42b7cf58ba43c7bfc, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1790953647
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790953644}
+  m_CullTransparentMesh: 1
 --- !u!1 &1801009928
 GameObject:
   m_ObjectHideFlags: 0
@@ -12833,9 +12910,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7770693061499387426, guid: 80f0616ac0860fe45bd03d24cfdd814a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7770693061499387427, guid: 80f0616ac0860fe45bd03d24cfdd814a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770693061499387429, guid: 80f0616ac0860fe45bd03d24cfdd814a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7770693061499387431, guid: 80f0616ac0860fe45bd03d24cfdd814a, type: 3}
       propertyPath: m_RootOrder
@@ -12926,6 +13011,8 @@ MonoBehaviour:
   isDash: 0
   isRader: 0
   isBuzz: 0
+  isDie: 0
+  isMove: 0
   Target_Canvas: {fileID: 1001604334}
   WeaknessEffect: {fileID: 272684947}
   WeaknessEffect_particle: {fileID: 198000010327505063}
@@ -12933,6 +13020,7 @@ MonoBehaviour:
   Test2: {fileID: 8370352770019570125}
   playersfx: {fileID: 1998510244}
   Weak_Attackfx: {fileID: 8300000, guid: 38fc9bbed5dac974ea53c41c4c47449d, type: 3}
+  diefx: {fileID: 8300000, guid: ca0644037da02f942a46dbc8cac73764, type: 3}
   isTurnCircle: 0
 --- !u!114 &1998510238
 MonoBehaviour:

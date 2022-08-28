@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -63,6 +65,10 @@ public class Player : MonoBehaviour
     bool isJump = false;
     bool isAttackOn;
 
+    //현숙추가
+    public bool isDie;
+    public bool isMove;
+
     bool isJumpFall;
 
     #region 레이더 관련 변수
@@ -84,6 +90,7 @@ public class Player : MonoBehaviour
     // 사운드효과
     public AudioSource playersfx;
     public AudioClip Weak_Attackfx;
+    public AudioClip diefx;
 
     void Start()
     {
@@ -119,6 +126,8 @@ public class Player : MonoBehaviour
 
         Attack();
         WhenAttack_GameSlowdown();
+
+        Die();
     }
 
     private void AnimationController()
@@ -141,13 +150,16 @@ public class Player : MonoBehaviour
     {
         #region [INPUT.GETAXIS]
 
-        hAxis = Input.GetAxis("Horizontal");
-        vAxis = Input.GetAxis("Vertical");
+        if(isMove == false)
+        {
+            hAxis = Input.GetAxis("Horizontal");
+            vAxis = Input.GetAxis("Vertical");
 
-        float speed_sum = Mathf.Abs(hAxis) + Mathf.Abs(vAxis);
+            float speed_sum = Mathf.Abs(hAxis) + Mathf.Abs(vAxis);
 
-        //키를 하나라도 누르기만 하면, 양수가 나
-        anim.SetFloat("Speed", speed_sum);
+            //키를 하나라도 누르기만 하면, 양수가 나
+            anim.SetFloat("Speed", speed_sum);
+        }
         #endregion
     }
 
@@ -469,6 +481,28 @@ public class Player : MonoBehaviour
         }
     }
 
+    // 죽었을때 애니메이션 실행 / 움직이지 않게
+    // 코루틴 실행 후 게임씬 리로드 될 수 있게 진행
+
+    void Die()
+    {
+        if(isDie == true)
+        {
+            //playersfx.PlayOneShot(diefx);
+            anim.Play("Die");
+            isMove = true;
+            
+            StartCoroutine(Load());
+        }
+    }
+
+    IEnumerator Load()
+    {
+        yield return new WaitForSeconds(4.0f);
+        SceneManager.LoadScene(gameObject.scene.name);
+
+    }
+
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -497,10 +531,10 @@ public class Player : MonoBehaviour
                 Test.Play();
                 Test2.Play();
 
-                WeaknessEffect.SetActive(true);
-                WeaknessEffect_particle.Stop();
-                WeaknessEffect_particle.Play();
-                WeaknessEffect.transform.position = transform.position; //+ new Vector3(0, 0, 0.5f);
+                //WeaknessEffect.SetActive(true);
+                //WeaknessEffect_particle.Stop();
+                //WeaknessEffect_particle.Play();
+                //WeaknessEffect.transform.position = transform.position; //+ new Vector3(0, 0, 0.5f);
 
                 //카메라 흔들고
                 LHS_CamRotate.Instance.OnShakeCamera(0.2f, 0.3f);
@@ -527,6 +561,11 @@ public class Player : MonoBehaviour
                     LHS_EnemyHP.Instance.HP -= 10;
                     isWeaknessAttack = true;
                 }
+            }
+
+            else
+            {
+                isAttackOn = false;
             }
         }
     }
