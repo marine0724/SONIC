@@ -2343,7 +2343,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ca7b2d84b43d68409cb8b7f28acc79f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a0a2a3af3429644e9f8bd2de8903be2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3319,10 +3319,10 @@ MonoBehaviour:
   isJump: 0
   isWaiting: 0
   mysfx: {fileID: 835098021}
-  Weaknessfx: {fileID: 8300000, guid: e2fd05d43ecd894429b20ac661e11bef, type: 3}
-  Jump2fx: {fileID: 8300000, guid: caa0315d5395e1448b7da3f85ce84260, type: 3}
-  Jump3fx: {fileID: 8300000, guid: caa0315d5395e1448b7da3f85ce84260, type: 3}
-  Bulletfx: {fileID: 8300000, guid: 8b4a2e87c2b285f4489621ee4c4a9823, type: 3}
+  Weaknessfx: {fileID: 8300000, guid: dcb5bdea38602e8419688c8739bd572f, type: 3}
+  Jump2fx: {fileID: 8300000, guid: 1c6e14b763578f44d9c85ef33a8f1059, type: 3}
+  Jump3fx: {fileID: 8300000, guid: 1c6e14b763578f44d9c85ef33a8f1059, type: 3}
+  Bulletfx: {fileID: 8300000, guid: 114f9fe47ee8a734c97f02224a9872e2, type: 3}
   JumpEffect: {fileID: 8370352770308684677}
   BulletEffect: {fileID: 1939539027}
   m_State: 0
@@ -4061,7 +4061,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f3346809b96626d4f9a9affff4167c2d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ca8b6ae79e1b11b4cae5ee99b8b5b244, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
@@ -4168,7 +4168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e77db9f1d3dc04bae43d55fff4a361, type: 3}
+  m_Script: {fileID: 11500000, guid: 637300b74e9e81f4584473b288678850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   campos: {fileID: 359634637}
@@ -4366,7 +4366,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 68e2ef2b80cbd134a8ee4209634eb9d5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: db12e4ba4db80054886f2f25d10c82b5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4510,7 +4510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c0815f4ff5b326549ab23dd1edf5ab14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39c0e5065d92dea449277bba0708e58f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7051,7 +7051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c3969cc662f361741803bba6d7f53b6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6992c42f8592ef42b7f4a5e0e296618, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7413,7 +7413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bc9230d5008b87e42b7cf58ba43c7bfc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 789297383fa7f56448a1af8d64ba0a01, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12885,7 +12885,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23764caba04edcc4d9ab54fc9d451b47, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01719ad3ed49d5940ac924860ddac872, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13023,8 +13023,8 @@ MonoBehaviour:
   Test: {fileID: 8370352770084145177}
   Test2: {fileID: 8370352770019570125}
   playersfx: {fileID: 1998510244}
-  Weak_Attackfx: {fileID: 8300000, guid: 38fc9bbed5dac974ea53c41c4c47449d, type: 3}
-  diefx: {fileID: 8300000, guid: ca0644037da02f942a46dbc8cac73764, type: 3}
+  Weak_Attackfx: {fileID: 8300000, guid: 1d7b527bb10eafd4fbbbe8ee63c27d57, type: 3}
+  diefx: {fileID: 8300000, guid: 8bc253a1a3017484cac338db1f33aa75, type: 3}
   isTurnCircle: 0
 --- !u!114 &1998510238
 MonoBehaviour:
