@@ -7,13 +7,16 @@ public class LJS_Ring : MonoBehaviour
 {
     // 계속 돌아감
     // 플레이어가 먹으면 사라지면서 소리남
-    
+
+
+    public AudioSource audioSource;
+
     float rotSpeed = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +35,9 @@ public class LJS_Ring : MonoBehaviour
             print("트리거 들어옴");
 
             LJS_UI_Score.Instance.Score += 10;
+
+            audioSource.Stop();
+            audioSource.Play();
 
             Destroy(gameObject);
 
