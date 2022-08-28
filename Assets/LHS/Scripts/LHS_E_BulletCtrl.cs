@@ -13,7 +13,8 @@ public class LHS_E_BulletCtrl : MonoBehaviour
     // 총알 효과
     // public ParticleSystem bulletPS;
     //public GameObject bulletGO;
-    //GameObject bulletGameObject;
+    
+    public GameObject bulletGameObject;
 
     // Start is called before the first frame update
     void Start()
@@ -59,18 +60,23 @@ public class LHS_E_BulletCtrl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //GameObject bullet = Instantiate(bulletGameObject);
+
         // 닿인 대상이 플레이어이고
         if (collision.gameObject.name.Contains("Player"))
         {
 
+            //bullet.transform.position = Player.Instance.transform.position;
             print("총알-1");
             // 플레이어의 피를 깎는다.
-            LHS_PlayerHP.Instance.HP -= 10;
+            LHS_PlayerHP.Instance.HP -= 5;
             Destroy(gameObject);
+
         }
         else
         {
             Destroy(gameObject);
+            //bullet.transform.position = transform.position;
         }
     }
 }
