@@ -12,7 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class LJS_ShockWave1 : MonoBehaviour {
+public class LHS_ShockWave1 : MonoBehaviour {
 
     /// <summary>
     /// this is the material that will store the ShockWave Shader
