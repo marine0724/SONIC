@@ -119,6 +119,7 @@ public class LHS_Enemy : MonoBehaviour
     // 이펙트 효과
     public ParticleSystem JumpEffect;
 
+
     public enum EnemyState
     {
         Idle,
@@ -307,7 +308,10 @@ public class LHS_Enemy : MonoBehaviour
 
     void Jump1Attack()
     {
-        m_State = EnemyState.Attack;
+        if (!isWaiting)
+        {
+            m_State = EnemyState.Attack;
+        }
     }
 
     // 체력이 30 ~ 59 일 때 // 시간이 흐르다가 일정시간이 되면 // 랜덤한 위치로 점프하며 이동하고 싶다. (Start 부분에서 랜덤 값 설정)
@@ -554,7 +558,7 @@ public class LHS_Enemy : MonoBehaviour
 
             currentTime += Time.deltaTime;
 
-            if (currentTime <= 3.0f)
+            if (currentTime < 3.0f)
             {
                 wnColor.enabled = true;
             }

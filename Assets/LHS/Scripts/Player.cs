@@ -78,6 +78,9 @@ public class Player : MonoBehaviour
     // 이펙트 효과
     public GameObject WeaknessEffect;
     public ParticleSystem WeaknessEffect_particle;
+    public ParticleSystem Test;
+    public ParticleSystem Test2;
+
     // 사운드효과
     public AudioSource playersfx;
     public AudioClip Weak_Attackfx;
@@ -485,7 +488,14 @@ public class Player : MonoBehaviour
         // isAttackOn 을 끈다.
         if (hit.gameObject.tag == "TargetOfRader")
         {
-                    
+            
+            Test.Play();
+            Test2.Play();
+            WeaknessEffect.SetActive(true);
+            WeaknessEffect_particle.Stop();
+            WeaknessEffect_particle.Play();
+            WeaknessEffect.transform.position = transform.position + new Vector3(0, 0, 0.5f);
+
             //카메라 흔들고
             LHS_CamRotate.Instance.OnShakeCamera(0.2f, 0.3f);
 
@@ -494,8 +504,7 @@ public class Player : MonoBehaviour
             
             // 점프 한번 주고
             yVelocity = jumpPower;
-
-            anim.SetTrigger("SpringJump");
+           
 
             // isAttackOn 을 끈다
             isAttackOn = false;
@@ -506,19 +515,12 @@ public class Player : MonoBehaviour
 
             if (LHS_Enemy.Instance.m_State == LHS_Enemy.EnemyState.Weakness)
             {
-                if (isWeaknessAttack)
-                {
-                    WeaknessEffect.SetActive(true);
-                    WeaknessEffect_particle.Stop();
-                    WeaknessEffect_particle.Play();
-                    WeaknessEffect.transform.position = transform.position + new Vector3(0, 0, 0.5f);
-                }
+
 
                 // 플레이어가 땅에 닿았을 때
                 if (!isWeaknessAttack)
-                { 
+                {
                     playersfx.PlayOneShot(Weak_Attackfx);
-
                     LHS_EnemyHP.Instance.HP -= 10;
                     isWeaknessAttack = true;
                 }
