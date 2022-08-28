@@ -10,14 +10,16 @@ public class LHS_E_BulletCtrl : MonoBehaviour
 
     Rigidbody rigid;
 
+
     // 총알 효과
-   // public ParticleSystem bulletPS;
+    // public ParticleSystem bulletPS;
     //public GameObject bulletGO;
     //GameObject bulletGameObject;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         rigid = GetComponent<Rigidbody>();
 
         //GetComponent<Rigidbody>().AddForce(Vector3.forward * rgSpeed, ForceMode.Impulse); -> 월드좌표가 기준이 되기때문에 방향이 맞지않는다.
@@ -42,7 +44,7 @@ public class LHS_E_BulletCtrl : MonoBehaviour
     {
     }
 
-    // 충돌한다면 나 삭제
+    // 충돌한다면 나 삭제AAAAA
     // 충돌처리에서 어떻게 할건지 생각해보기
     //private void OnCollisionEnter(Collision collision)
     //{
@@ -61,6 +63,7 @@ public class LHS_E_BulletCtrl : MonoBehaviour
         // 닿인 대상이 플레이어이고
         if (collision.gameObject.name.Contains("Player"))
         {
+
             print("총알-1");
             // 플레이어의 피를 깎는다.
             LHS_PlayerHP.Instance.HP -= 5;

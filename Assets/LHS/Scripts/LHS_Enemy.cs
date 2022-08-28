@@ -115,9 +115,11 @@ public class LHS_Enemy : MonoBehaviour
     public AudioClip Weaknessfx;
     public AudioClip Jump2fx;
     public AudioClip Jump3fx;
+    public AudioClip Bulletfx;
 
     // 이펙트 효과
     public ParticleSystem JumpEffect;
+    public ParticleSystem BulletEffect;
 
 
     public enum EnemyState
@@ -391,20 +393,20 @@ public class LHS_Enemy : MonoBehaviour
         if (LHS_EnemyHP.Instance.HP >= 80)
         {
 
-            anim.SetTrigger("Bullet");
+            //anim.SetTrigger("Bullet");
             m_attackSM = EnemyAttackState.BulletAttack;
 
         }
 
         else if (LHS_EnemyHP.Instance.HP >= 40 && LHS_EnemyHP.Instance.HP < 80)
         {
-            anim.SetTrigger("Bullet");
+            //anim.SetTrigger("Bullet");
             m_attackSM = EnemyAttackState.BulletAttack;
         }
 
         else if (LHS_EnemyHP.Instance.HP < 40)
         {
-            anim.SetTrigger("Bullet");
+            //anim.SetTrigger("Bullet");
             m_attackSM = EnemyAttackState.BulletAttack;
         }
 
@@ -423,6 +425,11 @@ public class LHS_Enemy : MonoBehaviour
         {
             if (currentBullet > 0)
             {
+                
+
+                anim.SetTrigger("Bullet");
+
+                
                 Fire();
             }
 
@@ -685,6 +692,8 @@ public class LHS_Enemy : MonoBehaviour
         // nextFire에는 Time.time + 딜레이 시간이 들어가게 됨
         if (Time.time >= nextFire)
         {
+            BulletEffect.Play();
+            
             // 총알을 가져와서 총구 위치에 놓고 싶다.
             GameObject _bullet = Instantiate(Bullet, firePos.position, firePos.rotation);
 

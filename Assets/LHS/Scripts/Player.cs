@@ -374,13 +374,15 @@ public class Player : MonoBehaviour
 
     private void CrossHairOnOff()
     {
-        // isRader 가 켜지면, 가장 가까운 오브젝트에게 TargetCanvas 를 키게 하고싶다.
+        // isRader 가 켜지면, 가장 가까운 오브젝트에게 TargetCanvas 를 키게 하고싶다.aaaaaaaaaaaaadddd
         if (isRader == true)
         {
             if (LHS_Enemy.Instance.m_State == LHS_Enemy.EnemyState.Weakness)
             {
                 //조준점을 키고
+                
                 Target_Canvas.SetActive(true);
+
                 //나한테 가져다 놓기
                 Target_Canvas.transform.position = FindNearestObjectByTag(TargetOfRader).transform.position + (transform.position - FindNearestObjectByTag(TargetOfRader).transform.position).normalized * 5;
                 //계속 플레이어를 바라보게
@@ -393,6 +395,7 @@ public class Player : MonoBehaviour
                     // 이미지의 색을 빨강으로 바꾸고
                     //Target_Canvas.GetComponent<Image>().color = Color.red;
                     // 레디 온
+                    
                     isRaderReady = true;
                     //Target_Canvas.SetActive(false);
                 }
@@ -488,33 +491,32 @@ public class Player : MonoBehaviour
         // isAttackOn 을 끈다.
         if (hit.gameObject.tag == "TargetOfRader")
         {
-            
-            Test.Play();
-            Test2.Play();
-            WeaknessEffect.SetActive(true);
-            WeaknessEffect_particle.Stop();
-            WeaknessEffect_particle.Play();
-            WeaknessEffect.transform.position = transform.position + new Vector3(0, 0, 0.5f);
-
-            //카메라 흔들고
-            LHS_CamRotate.Instance.OnShakeCamera(0.2f, 0.3f);
-
-            // 시간 느려지게 하는것 때문에 함
-            isAttackSucces = true;
-            
-            // 점프 한번 주고
-            yVelocity = jumpPower;
-           
-
-            // isAttackOn 을 끈다
-            isAttackOn = false;
-            //Destroy(hit.gameObject);
-
-            // 만약에 weakness 상태일때 attack을 당하지 않았다면
-            // 만약에 enemy가 WEAKNESS 상ㅊㅌ아 미안미안 
-
+            // 약점 상태라면 이펙트 효과들 / 카메라 흔들림 점프 / 땅에 닿으면 사운드 재생
             if (LHS_Enemy.Instance.m_State == LHS_Enemy.EnemyState.Weakness)
             {
+                Test.Play();
+                Test2.Play();
+                WeaknessEffect.SetActive(true);
+                WeaknessEffect_particle.Stop();
+                WeaknessEffect_particle.Play();
+                WeaknessEffect.transform.position = transform.position + new Vector3(0, 0, 0.5f);
+
+                //카메라 흔들고
+                LHS_CamRotate.Instance.OnShakeCamera(0.2f, 0.3f);
+
+                // 시간 느려지게 하는것 때문에 함
+                isAttackSucces = true;
+
+                // 점프 한번 주고
+                yVelocity = jumpPower;
+
+
+                // isAttackOn 을 끈다
+                isAttackOn = false;
+                //Destroy(hit.gameObject);
+
+                // 만약에 weakness 상태일때 attack을 당하지 않았다면
+                // 만약에 enemy가 WEAKNESS 상ㅊㅌ아 미안미안
 
 
                 // 플레이어가 땅에 닿았을 때
